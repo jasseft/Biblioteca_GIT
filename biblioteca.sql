@@ -32,4 +32,4 @@ USE `git_biblioteca`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 19:51:51
+-- Dump completed on 2024-02-01 20:00:31
