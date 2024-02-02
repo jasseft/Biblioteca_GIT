@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `tbl_cat_editorial`;
 CREATE TABLE `tbl_cat_editorial` (
   `editorial_Id` int(11) NOT NULL AUTO_INCREMENT,
   `editorial_Nombre` varchar(45) NOT NULL,
-  `editorial_Activo` varchar(45) NOT NULL,
+  `editorial_Activo` int(11) NOT NULL,
   PRIMARY KEY (`editorial_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -82,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 20:16:17
+-- Dump completed on 2024-02-01 20:19:26
