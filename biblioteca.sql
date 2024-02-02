@@ -18,6 +18,30 @@ USE `git_biblioteca`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tbl_cat_editorial`
+--
+
+DROP TABLE IF EXISTS `tbl_cat_editorial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_cat_editorial` (
+  `editorial_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `editorial_Nombre` varchar(45) NOT NULL,
+  `editorial_Activo` varchar(45) NOT NULL,
+  PRIMARY KEY (`editorial_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_cat_editorial`
+--
+
+LOCK TABLES `tbl_cat_editorial` WRITE;
+/*!40000 ALTER TABLE `tbl_cat_editorial` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_cat_editorial` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_cat_genero`
 --
 
@@ -58,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 20:10:59
+-- Dump completed on 2024-02-01 20:16:17
