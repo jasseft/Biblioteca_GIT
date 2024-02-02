@@ -90,6 +90,31 @@ LOCK TABLES `tbl_cat_idioma` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbl_hist_ventas`
+--
+
+DROP TABLE IF EXISTS `tbl_hist_ventas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_hist_ventas` (
+  `venta_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `libro_Id` int(11) NOT NULL,
+  `venta_Cantidad` int(11) NOT NULL,
+  `venta_Activo` int(11) NOT NULL,
+  PRIMARY KEY (`venta_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_hist_ventas`
+--
+
+LOCK TABLES `tbl_hist_ventas` WRITE;
+/*!40000 ALTER TABLE `tbl_hist_ventas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_hist_ventas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbl_ope_libro`
 --
 
@@ -141,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 21:50:23
+-- Dump completed on 2024-02-01 21:59:20
