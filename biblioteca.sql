@@ -151,7 +151,7 @@ CREATE TABLE `tbl_ope_libro` (
 
 LOCK TABLES `tbl_ope_libro` WRITE;
 /*!40000 ALTER TABLE `tbl_ope_libro` DISABLE KEYS */;
-INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',1,1,1,30,20,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',4,2,1,35,21,1),(5,'Libro B2',5,2,2,28,19,1),(6,'Libro B3',1,2,3,45,25,1),(7,'Libro C1',2,3,1,20,18,1),(8,'Libro C2',3,3,2,33,22,1),(9,'Libro C3',4,3,3,27,19,1),(10,'Libro D1',5,4,1,38,24,1),(11,'Libro D2',1,4,2,22,17,1),(12,'Libro D3',2,4,3,30,21,1),(13,'Libro E1',3,5,1,26,19,1),(14,'Libro E2',4,5,2,32,23,1),(15,'Libro E3',5,5,3,36,25,1);
+INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',2,1,1,30,26,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',4,2,1,35,21,1),(5,'Libro B2',5,2,2,28,19,1),(6,'Libro B3',1,2,3,45,25,1),(7,'Libro C1',2,3,1,20,18,1),(8,'Libro C2',3,3,2,33,22,1),(9,'Libro C3',4,3,3,27,19,1),(10,'Libro D1',5,4,1,38,24,1),(11,'Libro D2',1,4,2,22,17,1),(12,'Libro D3',2,4,3,30,21,1),(13,'Libro E1',3,5,1,26,19,1),(14,'Libro E2',4,5,2,32,23,1),(15,'Libro E3',5,5,3,36,25,1);
 /*!40000 ALTER TABLE `tbl_ope_libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,6 +335,45 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updateLibro` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+DELIMITER ;;
+CREATE DEFINER=`jason`@`%` PROCEDURE `updateLibro`(
+    IN _libro_Id INT,
+    IN _libro_Nombre VARCHAR(45),
+    IN _libro_Genero_Id INT,
+    IN _libro_Costo DECIMAL(10,2))
+BEGIN
+    -- Verificar si el libro existe antes de actualizar
+    DECLARE libroExists INT DEFAULT 0;
+    SELECT COUNT(*) INTO libroExists FROM tbl_ope_libro WHERE libro_Id = _libro_Id;
+
+    IF libroExists > 0 THEN
+        -- Actualizar el libro
+        UPDATE tbl_ope_libro
+        SET
+            libro_Nombre = _libro_Nombre,
+            libro_Genero_Id = _libro_Genero_Id,
+            libro_Costo = _libro_Costo
+        WHERE libro_Id = _libro_Id;
+
+        SELECT 'Libro actualizado correctamente.' AS Resultado;
+    ELSE
+        SELECT 'El libro con ID ' + CAST(_libro_Id AS CHAR) + ' no existe.' AS Resultado;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -345,4 +384,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 23:18:38
+-- Dump completed on 2024-02-01 23:23:52
