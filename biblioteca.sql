@@ -105,7 +105,13 @@ CREATE TABLE `tbl_ope_libro` (
   `libro_Cantidad` int(11) NOT NULL,
   `libro_Costo` decimal(10,0) NOT NULL,
   `libro_Activo` int(11) NOT NULL,
-  PRIMARY KEY (`libro_Id`)
+  PRIMARY KEY (`libro_Id`),
+  KEY `libro_Genero_Id_idx` (`libro_Genero_Id`),
+  KEY `libro_Editorial_Id_idx` (`libro_Editorial_Id`),
+  KEY `libro_Idioma_Id_idx` (`libro_Idioma_Id`),
+  CONSTRAINT `libro_Editorial_Id` FOREIGN KEY (`libro_Editorial_Id`) REFERENCES `tbl_cat_editorial` (`editorial_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `libro_Genero_Id` FOREIGN KEY (`libro_Genero_Id`) REFERENCES `tbl_cat_genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `libro_Idioma_Id` FOREIGN KEY (`libro_Idioma_Id`) REFERENCES `tbl_cat_idioma` (`Idioma_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 20:29:39
+-- Dump completed on 2024-02-01 21:50:23
