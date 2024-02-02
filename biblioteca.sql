@@ -247,6 +247,37 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `showAllLibros` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+DELIMITER ;;
+CREATE DEFINER=`jason`@`%` PROCEDURE `showAllLibros`()
+BEGIN
+    SELECT 
+        l.libro_Id,
+        l.libro_Nombre,
+        g.generoNombre AS Genero,
+        e.editorial_Nombre AS Editorial,
+        i.Idioma_Nombre AS Idioma,
+        l.libro_Cantidad,
+        l.libro_Costo
+    FROM tbl_ope_libro l
+    INNER JOIN tbl_cat_genero g ON l.libro_Genero_Id = g.generoId
+    INNER JOIN tbl_cat_editorial e ON l.libro_Editorial_Id = e.editorial_Id
+    INNER JOIN tbl_cat_idioma i ON l.libro_Idioma_Id = i.Idioma_Id
+    WHERE l.libro_Activo = 1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -257,4 +288,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 22:55:44
+-- Dump completed on 2024-02-01 23:04:13
