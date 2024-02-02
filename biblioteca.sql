@@ -158,6 +158,31 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'git_biblioteca'
 --
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertLibro` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+DELIMITER ;;
+CREATE DEFINER=`jason`@`%` PROCEDURE `insertLibro`(
+	IN _libro_nombre VARCHAR(45),
+    IN _libro_genero INT,
+    IN _libro_editorial INT,
+    IN _libro_idioma INT,
+    IN _libro_cantidad INT,
+    IN _libro_costo DECIMAL)
+BEGIN
+	INSERT INTO tbl_ope_libro VALUES(NULL, _libro_nombre, _libro_genero, _libro_editorial, _libro_idioma, _libro_cantidad, _libro_costo, 1);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -168,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 22:01:18
+-- Dump completed on 2024-02-01 22:30:24
