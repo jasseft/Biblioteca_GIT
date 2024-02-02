@@ -107,7 +107,7 @@ CREATE TABLE `tbl_hist_ventas` (
   PRIMARY KEY (`venta_Id`),
   KEY `libro_Id_idx` (`libro_Id`),
   CONSTRAINT `libro_Id` FOREIGN KEY (`libro_Id`) REFERENCES `tbl_ope_libro` (`libro_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +116,7 @@ CREATE TABLE `tbl_hist_ventas` (
 
 LOCK TABLES `tbl_hist_ventas` WRITE;
 /*!40000 ALTER TABLE `tbl_hist_ventas` DISABLE KEYS */;
+INSERT INTO `tbl_hist_ventas` VALUES (1,1,2,1);
 /*!40000 ALTER TABLE `tbl_hist_ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +152,7 @@ CREATE TABLE `tbl_ope_libro` (
 
 LOCK TABLES `tbl_ope_libro` WRITE;
 /*!40000 ALTER TABLE `tbl_ope_libro` DISABLE KEYS */;
-INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',2,1,1,30,26,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',4,2,1,35,21,1),(5,'Libro B2',5,2,2,28,19,1),(6,'Libro B3',1,2,3,45,25,1),(7,'Libro C1',2,3,1,20,18,1),(8,'Libro C2',3,3,2,33,22,1),(9,'Libro C3',4,3,3,27,19,1),(10,'Libro D1',5,4,1,38,24,1),(11,'Libro D2',1,4,2,22,17,1),(12,'Libro D3',2,4,3,30,21,1),(13,'Libro E1',3,5,1,26,19,1),(14,'Libro E2',4,5,2,32,23,1),(15,'Libro E3',5,5,3,36,25,1);
+INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',2,1,1,28,26,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',4,2,1,35,21,1),(5,'Libro B2',5,2,2,28,19,1),(6,'Libro B3',1,2,3,45,25,1),(7,'Libro C1',2,3,1,20,18,1),(8,'Libro C2',3,3,2,33,22,1),(9,'Libro C3',4,3,3,27,19,1),(10,'Libro D1',5,4,1,38,24,1),(11,'Libro D2',1,4,2,22,17,1),(12,'Libro D3',2,4,3,30,21,1),(13,'Libro E1',3,5,1,26,19,1),(14,'Libro E2',4,5,2,32,23,1),(15,'Libro E3',5,5,3,36,25,1);
 /*!40000 ALTER TABLE `tbl_ope_libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,6 +375,44 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ventaLibro` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+DELIMITER ;;
+CREATE DEFINER=`jason`@`%` PROCEDURE `ventaLibro`(
+    IN _libro_Id INT,
+    IN _venta_Cantidad INT
+)
+BEGIN
+    -- Verificar si el libro existe y hay suficiente stock
+    DECLARE stockDisponible INT;
+    SELECT libro_Cantidad INTO stockDisponible FROM tbl_ope_libro WHERE libro_Id = _libro_Id;
+
+    IF stockDisponible >= _venta_Cantidad THEN
+        -- Realizar la venta y actualizar el stock
+        INSERT INTO tbl_hist_ventas (libro_Id, venta_Cantidad, venta_Activo)
+        VALUES (_libro_Id, _venta_Cantidad, 1);
+
+        UPDATE tbl_ope_libro
+        SET libro_Cantidad = libro_Cantidad - _venta_Cantidad
+        WHERE libro_Id = _libro_Id;
+
+        SELECT 'Venta realizada correctamente.' AS Resultado;
+    ELSE
+        SELECT 'Stock insuficiente para realizar la venta.' AS Resultado;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -384,4 +423,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 23:23:52
+-- Dump completed on 2024-02-01 23:45:57
