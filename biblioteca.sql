@@ -101,7 +101,9 @@ CREATE TABLE `tbl_hist_ventas` (
   `libro_Id` int(11) NOT NULL,
   `venta_Cantidad` int(11) NOT NULL,
   `venta_Activo` int(11) NOT NULL,
-  PRIMARY KEY (`venta_Id`)
+  PRIMARY KEY (`venta_Id`),
+  KEY `libro_Id_idx` (`libro_Id`),
+  CONSTRAINT `libro_Id` FOREIGN KEY (`libro_Id`) REFERENCES `tbl_ope_libro` (`libro_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -166,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 21:59:20
+-- Dump completed on 2024-02-01 22:01:18
