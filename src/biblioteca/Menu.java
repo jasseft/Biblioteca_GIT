@@ -126,7 +126,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConectarBaseActionPerformed
 
     private void btnAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarLibroActionPerformed
-        // TODO add your handling code here:
+        Agregar agregarLibroForm = new Agregar();
+        agregarLibroForm.setVisible(true);
     }//GEN-LAST:event_btnAgregarLibroActionPerformed
 
     /**
