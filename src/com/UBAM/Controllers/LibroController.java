@@ -45,4 +45,36 @@ public class LibroController {
             conn.cerrarConexion();
         }
     }
+    
+    public void modificarLibro(int idLibro, int idGenero, int idEditorial, int idIdioma, String nombreLibro, double costo) {
+        Connection updateConn = conn.abrirConexion();
+
+        try {
+            String storedProcedure = "{CALL updateLibro(?, ?, ?, ?, ?, ?)}";
+            CallableStatement cs = updateConn.prepareCall(storedProcedure);
+            cs.setInt(1, idLibro);
+            cs.setString(2, nombreLibro);
+            cs.setInt(3, idGenero);
+            cs.setInt(4, idEditorial);
+            cs.setInt(5, idIdioma);
+            cs.setDouble(6, costo);
+
+            cs.executeUpdate();
+
+            // Verificar el resultado del Stored Procedure
+            ResultSet rs = cs.getResultSet();
+            if (rs.next()) {
+                String resultado = rs.getString("Resultado");
+                JOptionPane.showMessageDialog(null, resultado);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el libro.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            conn.cerrarConexion();
+        }
+    }
+
 }

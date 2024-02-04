@@ -8,6 +8,7 @@ import com.UBAM.ConexionMySQL.ConexionMySQL;
 import com.UBAM.Models.Editorial;
 import com.UBAM.Models.Genero;
 import com.UBAM.Models.Idioma;
+import com.UBAM.Models.Libro;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -81,5 +82,27 @@ public class ComboController {
         }
         
         return lista_idiomas;
+    }
+    
+    public ArrayList<Libro> obtenerLibros(){
+        ArrayList<Libro> lista_libros = new ArrayList<>();
+        try{
+               
+            String query = "CALL showAllLibros()";
+            PreparedStatement stmt = selectConn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Libro libros = new Libro();
+                libros.setLibro_Id(rs.getInt("libro_Id"));
+                libros.setLibro_Nombre(rs.getString("libro_Nombre"));
+                lista_libros.add(libros);
+            }
+            System.out.println("Libros obtenidos");
+        } catch(Exception e){
+            System.out.println("Error al buscar idiomas." + e);
+        }
+        
+        return lista_libros;
     }
 }

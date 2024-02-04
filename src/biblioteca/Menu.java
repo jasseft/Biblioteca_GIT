@@ -57,6 +57,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnModificarLibro.setText("Modificar Libro");
+        btnModificarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarLibroActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
 
@@ -130,6 +135,12 @@ public class Menu extends javax.swing.JFrame {
         agregarLibroForm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAgregarLibroActionPerformed
+
+    private void btnModificarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarLibroActionPerformed
+        Modificar modificarLibroForm = new Modificar();
+        modificarLibroForm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnModificarLibroActionPerformed
 
     /**
      * @param args the command line arguments
