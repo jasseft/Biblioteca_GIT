@@ -29,7 +29,7 @@ CREATE TABLE `tbl_cat_editorial` (
   `editorial_Nombre` varchar(45) NOT NULL,
   `editorial_Activo` int(11) NOT NULL,
   PRIMARY KEY (`editorial_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tbl_cat_editorial` (
 
 LOCK TABLES `tbl_cat_editorial` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_editorial` DISABLE KEYS */;
-INSERT INTO `tbl_cat_editorial` VALUES (1,'Penguin Random House',1),(2,'HarperCollins',1),(3,'Simon & Schuster',1),(4,'Macmillan Publishers',1),(5,'Hachette Livre',1);
+INSERT INTO `tbl_cat_editorial` VALUES (1,'Penguin Random House',1),(2,'HarperCollins',1),(3,'Simon & Schuster',1),(4,'Macmillan Publishers',1),(5,'Hachette Livre',1),(6,'Penguin Random House',1),(7,'HarperCollins',1),(8,'Simon & Schuster',1),(9,'Macmillan Publishers',1),(10,'Hachette Livre',1);
 /*!40000 ALTER TABLE `tbl_cat_editorial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `tbl_cat_genero` (
   `generoNombre` varchar(45) NOT NULL,
   `generoActivo` int(11) NOT NULL,
   PRIMARY KEY (`generoId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `tbl_cat_genero` (
 
 LOCK TABLES `tbl_cat_genero` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_genero` DISABLE KEYS */;
-INSERT INTO `tbl_cat_genero` VALUES (1,'Novela',1),(2,'Ensayo',1),(3,'Ciencia Ficción',1),(4,'Misterio',1),(5,'Romance',1),(6,'Thriller',1),(7,'Biografía',1),(8,'Histórico',1),(9,'Drama',1),(10,'Fantasía',1),(11,'Aventura',1),(12,'Suspense',1),(13,'Poesía',1),(14,'Humor',1),(15,'Crimen',1);
+INSERT INTO `tbl_cat_genero` VALUES (1,'Novela',1),(2,'Ensayo',1),(3,'Ciencia Ficción',1),(4,'Misterio',1),(5,'Romance',1),(6,'Thriller',1),(7,'Biografía',1),(8,'Histórico',1),(9,'Drama',1),(10,'Fantasía',1),(11,'Aventura',1),(12,'Suspense',1),(13,'Poesía',1),(14,'Humor',1),(15,'Crimen',1),(16,'Novela',1),(17,'Ensayo',1),(18,'Ciencia Ficción',1),(19,'Misterio',1),(20,'Romance',1),(21,'Thriller',1),(22,'Biografía',1),(23,'Histórico',1),(24,'Drama',1),(25,'Fantasía',1),(26,'Aventura',1),(27,'Suspense',1),(28,'Poesía',1),(29,'Humor',1),(30,'Crimen',1);
 /*!40000 ALTER TABLE `tbl_cat_genero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +79,7 @@ CREATE TABLE `tbl_cat_idioma` (
   `Idioma_Nombre` varchar(45) NOT NULL,
   `Idioma_Activo` int(11) NOT NULL,
   PRIMARY KEY (`Idioma_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `tbl_cat_idioma` (
 
 LOCK TABLES `tbl_cat_idioma` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_idioma` DISABLE KEYS */;
-INSERT INTO `tbl_cat_idioma` VALUES (1,'Español',1),(2,'Inglés',1),(3,'Francés',1),(4,'Alemán',1),(5,'Italiano',1);
+INSERT INTO `tbl_cat_idioma` VALUES (1,'Español',1),(2,'Inglés',1),(3,'Francés',1),(4,'Alemán',1),(5,'Italiano',1),(6,'Español',1),(7,'Inglés',1),(8,'Francés',1),(9,'Alemán',1),(10,'Italiano',1);
 /*!40000 ALTER TABLE `tbl_cat_idioma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ CREATE TABLE `tbl_hist_ventas` (
   PRIMARY KEY (`venta_Id`),
   KEY `libro_Id_idx` (`libro_Id`),
   CONSTRAINT `libro_Id` FOREIGN KEY (`libro_Id`) REFERENCES `tbl_ope_libro` (`libro_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +116,6 @@ CREATE TABLE `tbl_hist_ventas` (
 
 LOCK TABLES `tbl_hist_ventas` WRITE;
 /*!40000 ALTER TABLE `tbl_hist_ventas` DISABLE KEYS */;
-INSERT INTO `tbl_hist_ventas` VALUES (1,1,2,1);
 /*!40000 ALTER TABLE `tbl_hist_ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +142,7 @@ CREATE TABLE `tbl_ope_libro` (
   CONSTRAINT `libro_Editorial_Id` FOREIGN KEY (`libro_Editorial_Id`) REFERENCES `tbl_cat_editorial` (`editorial_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `libro_Genero_Id` FOREIGN KEY (`libro_Genero_Id`) REFERENCES `tbl_cat_genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `libro_Idioma_Id` FOREIGN KEY (`libro_Idioma_Id`) REFERENCES `tbl_cat_idioma` (`Idioma_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +151,7 @@ CREATE TABLE `tbl_ope_libro` (
 
 LOCK TABLES `tbl_ope_libro` WRITE;
 /*!40000 ALTER TABLE `tbl_ope_libro` DISABLE KEYS */;
-INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',2,1,1,28,26,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',4,2,1,35,21,1),(5,'Libro B2',5,2,2,28,19,1),(6,'Libro B3',1,2,3,45,25,1),(7,'Libro C1',2,3,1,20,18,1),(8,'Libro C2',3,3,2,33,22,1),(9,'Libro C3',4,3,3,27,19,1),(10,'Libro D1',5,4,1,38,24,1),(11,'Libro D2',1,4,2,22,17,1),(12,'Libro D3',2,4,3,30,21,1),(13,'Libro E1',3,5,1,26,19,1),(14,'Libro E2',4,5,2,32,23,1),(15,'Libro E3',5,5,3,36,25,1);
+INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',1,1,1,30,20,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',5,5,7,26,269,1),(5,'Libro B2',1,2,3,5,350,1);
 /*!40000 ALTER TABLE `tbl_ope_libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +316,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`jason`@`%` PROCEDURE `showAllLibros`()
 BEGIN
-    SELECT 
+	SELECT 
         l.libro_Id,
         l.libro_Nombre,
         g.generoNombre AS Genero,
@@ -350,6 +349,8 @@ CREATE DEFINER=`jason`@`%` PROCEDURE `updateLibro`(
     IN _libro_Id INT,
     IN _libro_Nombre VARCHAR(45),
     IN _libro_Genero_Id INT,
+    IN _libro_Editorial_Id INT,
+    IN _libro_Idioma_Id INT,
     IN _libro_Costo DECIMAL(10,2))
 BEGIN
     -- Verificar si el libro existe antes de actualizar
@@ -362,6 +363,8 @@ BEGIN
         SET
             libro_Nombre = _libro_Nombre,
             libro_Genero_Id = _libro_Genero_Id,
+            libro_Editorial_Id = _libro_Editorial_Id,
+            libro_Idioma_Id = _libro_Idioma_Id,
             libro_Costo = _libro_Costo
         WHERE libro_Id = _libro_Id;
 
@@ -423,4 +426,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 23:45:57
+-- Dump completed on 2024-02-03 22:28:24
