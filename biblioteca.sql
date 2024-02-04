@@ -29,7 +29,7 @@ CREATE TABLE `tbl_cat_editorial` (
   `editorial_Nombre` varchar(45) NOT NULL,
   `editorial_Activo` int(11) NOT NULL,
   PRIMARY KEY (`editorial_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tbl_cat_editorial` (
 
 LOCK TABLES `tbl_cat_editorial` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_editorial` DISABLE KEYS */;
-INSERT INTO `tbl_cat_editorial` VALUES (1,'Penguin Random House',1),(2,'HarperCollins',1),(3,'Simon & Schuster',1),(4,'Macmillan Publishers',1),(5,'Hachette Livre',1),(6,'Penguin Random House',1),(7,'HarperCollins',1),(8,'Simon & Schuster',1),(9,'Macmillan Publishers',1),(10,'Hachette Livre',1);
+INSERT INTO `tbl_cat_editorial` VALUES (1,'Penguin Random House',1),(2,'HarperCollins',1),(3,'Simon & Schuster',1),(4,'Macmillan Publishers',1),(5,'Hachette Livre',1);
 /*!40000 ALTER TABLE `tbl_cat_editorial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,7 @@ CREATE TABLE `tbl_cat_genero` (
   `generoNombre` varchar(45) NOT NULL,
   `generoActivo` int(11) NOT NULL,
   PRIMARY KEY (`generoId`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `tbl_cat_genero` (
 
 LOCK TABLES `tbl_cat_genero` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_genero` DISABLE KEYS */;
-INSERT INTO `tbl_cat_genero` VALUES (1,'Novela',1),(2,'Ensayo',1),(3,'Ciencia Ficción',1),(4,'Misterio',1),(5,'Romance',1),(6,'Thriller',1),(7,'Biografía',1),(8,'Histórico',1),(9,'Drama',1),(10,'Fantasía',1),(11,'Aventura',1),(12,'Suspense',1),(13,'Poesía',1),(14,'Humor',1),(15,'Crimen',1),(16,'Novela',1),(17,'Ensayo',1),(18,'Ciencia Ficción',1),(19,'Misterio',1),(20,'Romance',1),(21,'Thriller',1),(22,'Biografía',1),(23,'Histórico',1),(24,'Drama',1),(25,'Fantasía',1),(26,'Aventura',1),(27,'Suspense',1),(28,'Poesía',1),(29,'Humor',1),(30,'Crimen',1);
+INSERT INTO `tbl_cat_genero` VALUES (1,'Novela',1),(2,'Ensayo',1),(3,'Ciencia Ficción',1),(4,'Misterio',1),(5,'Romance',1),(6,'Thriller',1),(7,'Biografía',1),(8,'Histórico',1),(9,'Drama',1),(10,'Fantasía',1),(11,'Aventura',1),(12,'Suspense',1),(13,'Poesía',1),(14,'Humor',1),(15,'Crimen',1);
 /*!40000 ALTER TABLE `tbl_cat_genero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +79,7 @@ CREATE TABLE `tbl_cat_idioma` (
   `Idioma_Nombre` varchar(45) NOT NULL,
   `Idioma_Activo` int(11) NOT NULL,
   PRIMARY KEY (`Idioma_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `tbl_cat_idioma` (
 
 LOCK TABLES `tbl_cat_idioma` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_idioma` DISABLE KEYS */;
-INSERT INTO `tbl_cat_idioma` VALUES (1,'Español',1),(2,'Inglés',1),(3,'Francés',1),(4,'Alemán',1),(5,'Italiano',1),(6,'Español',1),(7,'Inglés',1),(8,'Francés',1),(9,'Alemán',1),(10,'Italiano',1);
+INSERT INTO `tbl_cat_idioma` VALUES (1,'Español',1),(2,'Inglés',1),(3,'Francés',1),(4,'Alemán',1),(5,'Italiano',1);
 /*!40000 ALTER TABLE `tbl_cat_idioma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `tbl_ope_libro` (
   CONSTRAINT `libro_Editorial_Id` FOREIGN KEY (`libro_Editorial_Id`) REFERENCES `tbl_cat_editorial` (`editorial_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `libro_Genero_Id` FOREIGN KEY (`libro_Genero_Id`) REFERENCES `tbl_cat_genero` (`generoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `libro_Idioma_Id` FOREIGN KEY (`libro_Idioma_Id`) REFERENCES `tbl_cat_idioma` (`Idioma_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `tbl_ope_libro` (
 
 LOCK TABLES `tbl_ope_libro` WRITE;
 /*!40000 ALTER TABLE `tbl_ope_libro` DISABLE KEYS */;
-INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',1,1,1,30,20,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1),(4,'Libro B1',5,5,7,26,269,1),(5,'Libro B2',1,2,3,5,350,1);
+INSERT INTO `tbl_ope_libro` VALUES (1,'Libro A1',1,1,1,30,20,1),(2,'Libro A2',2,1,2,25,16,1),(3,'Libro A3',3,1,3,40,23,1);
 /*!40000 ALTER TABLE `tbl_ope_libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -426,4 +426,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-03 22:28:24
+-- Dump completed on 2024-02-03 22:43:44
