@@ -13,6 +13,15 @@ public class Editorial {
     private int editorial_Id;
     private String editorial_Nombre;
     private int editorial_Activo;
+    
+    public Editorial(){
+        
+    }
+
+    public Editorial(int editorial_Id, String editorial_Nombre) {
+        this.editorial_Id = editorial_Id;
+        this.editorial_Nombre = editorial_Nombre;
+    }
 
     public int getEditorial_Id() {
         return editorial_Id;
@@ -36,6 +45,11 @@ public class Editorial {
 
     public void setEditorial_Activo(int editorial_Activo) {
         this.editorial_Activo = editorial_Activo;
+    }
+
+    @Override
+    public String toString() {
+        return editorial_Nombre;
     }
     
     

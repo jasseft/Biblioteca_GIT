@@ -4,10 +4,15 @@
  */
 package biblioteca;
 
-/**
- *
- * @author jasse
- */
+import com.UBAM.ConexionMySQL.ConexionMySQL;
+import com.UBAM.Controllers.ComboController;
+import com.UBAM.Models.Editorial;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 public class Agregar extends javax.swing.JFrame {
 
     /**
@@ -15,6 +20,16 @@ public class Agregar extends javax.swing.JFrame {
      */
     public Agregar() {
         initComponents();
+        cargarEditoriales();
+    }
+    
+    private void cargarEditoriales() {
+        ComboController comboController = new ComboController();
+        ArrayList<Editorial> lista = comboController.obtenerEditoriales();
+        
+        for(int i = 0; i<lista.size(); i++){
+            jc_editorial.addItem(new Editorial(lista.get(i).getEditorial_Id(), lista.get(i).getEditorial_Nombre()));
+        }
     }
 
     /**
@@ -45,17 +60,15 @@ public class Agregar extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre del Libro: ");
 
-        jc_editorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel2.setText("Editorial: ");
 
         jLabel3.setText("Género: ");
 
-        jc_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jc_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--" }));
 
         jLabel4.setText("Idioma:");
 
-        jc_idioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jc_idioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--" }));
 
         jLabel5.setText("Costo:");
 
@@ -66,6 +79,11 @@ public class Agregar extends javax.swing.JFrame {
         btnSalir.setText("Salir");
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,10 +145,11 @@ public class Agregar extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jt_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegistrar)
-                    .addComponent(btnSalir))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLimpiar)
+                        .addComponent(btnSalir)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -153,6 +172,12 @@ public class Agregar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        //String opcion = (String) jc_editorial.getSelectedItem();
+        int id = jc_editorial.getItemAt(jc_editorial.getSelectedIndex()).getEditorial_Id();
+        JOptionPane.showMessageDialog(null, "ID --> " + id);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +225,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jc_editorial;
+    private javax.swing.JComboBox<Editorial> jc_editorial;
     private javax.swing.JComboBox<String> jc_genero;
     private javax.swing.JComboBox<String> jc_idioma;
     private javax.swing.JTextField jt_cantidad;
