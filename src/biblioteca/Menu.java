@@ -66,6 +66,11 @@ public class Menu extends javax.swing.JFrame {
         btnSalir.setText("Salir");
 
         btnVenta.setText("Realizar Venta");
+        btnVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,6 +146,12 @@ public class Menu extends javax.swing.JFrame {
         modificarLibroForm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnModificarLibroActionPerformed
+
+    private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
+        Venta ventaForm = new Venta();
+        ventaForm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVentaActionPerformed
 
     /**
      * @param args the command line arguments

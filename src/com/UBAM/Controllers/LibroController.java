@@ -76,5 +76,33 @@ public class LibroController {
             conn.cerrarConexion();
         }
     }
+    
+    public void realizarVenta(int libroId, int cantidadVenta) {
+        Connection updateConn = conn.abrirConexion();
+
+        try {
+            String storedProcedure = "{CALL ventaLibro(?, ?)}";
+            CallableStatement cs = updateConn.prepareCall(storedProcedure);
+            cs.setInt(1, libroId);
+            cs.setInt(2, cantidadVenta);
+
+            cs.executeUpdate();
+
+            // Verificar el resultado del Stored Procedure
+            ResultSet rs = cs.getResultSet();
+            if (rs.next()) {
+                String resultado = rs.getString("Resultado");
+                JOptionPane.showMessageDialog(null, resultado);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo realizar la venta.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            conn.cerrarConexion();
+        }
+    }
+
 
 }
