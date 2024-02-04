@@ -31,6 +31,8 @@ public class Agregar extends javax.swing.JFrame {
         ComboController comboController = new ComboController();
         ArrayList<Editorial> lista = comboController.obtenerEditoriales();
         
+        jc_editorial.addItem(new Editorial(0, "--SELECCIONE--"));
+        
         for(int i = 0; i<lista.size(); i++){
             jc_editorial.addItem(new Editorial(lista.get(i).getEditorial_Id(), lista.get(i).getEditorial_Nombre()));
         }
@@ -40,6 +42,8 @@ public class Agregar extends javax.swing.JFrame {
         ComboController comboController = new ComboController();
         ArrayList<Genero> lista = comboController.obtenerGeneros();
         
+        jc_genero.addItem(new Genero(0, "--SELECCIONE--"));
+        
         for(int i = 0; i<lista.size(); i++){
             jc_genero.addItem(new Genero(lista.get(i).getGeneroId(), lista.get(i).getGeneroNombre()));
         }
@@ -48,6 +52,8 @@ public class Agregar extends javax.swing.JFrame {
     private void cargarIdiomas() {
         ComboController comboController = new ComboController();
         ArrayList<Idioma> lista = comboController.obtenerIdiomas();
+        
+        jc_idioma.addItem(new Idioma(0, "--SELECCIONE--"));
         
         for(int i = 0; i<lista.size(); i++){
             jc_idioma.addItem(new Idioma(lista.get(i).getIdioma_Id(), lista.get(i).getIdioma_Nombre()));
