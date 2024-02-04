@@ -7,6 +7,7 @@ package com.UBAM.Controllers;
 import com.UBAM.ConexionMySQL.ConexionMySQL;
 import com.UBAM.Models.Editorial;
 import com.UBAM.Models.Genero;
+import com.UBAM.Models.Idioma;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -58,5 +59,27 @@ public class ComboController {
         }
         
         return lista_generos;
+    }
+    
+    public ArrayList<Idioma> obtenerIdiomas(){
+        ArrayList<Idioma> lista_idiomas = new ArrayList<>();
+        try{
+               
+            String query = "CALL showAllIdiomas()";
+            PreparedStatement stmt = selectConn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Idioma idiomas = new Idioma();
+                idiomas.setIdioma_Id(rs.getInt("Idioma_Id"));
+                idiomas.setIdioma_Nombre(rs.getString("Idioma_Nombre"));
+                lista_idiomas.add(idiomas);
+            }
+            System.out.println("Categoria obtenida");
+        } catch(Exception e){
+            System.out.println("Error al buscar categorías." + e);
+        }
+        
+        return lista_idiomas;
     }
 }

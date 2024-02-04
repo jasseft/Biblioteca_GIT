@@ -8,6 +8,7 @@ import com.UBAM.ConexionMySQL.ConexionMySQL;
 import com.UBAM.Controllers.ComboController;
 import com.UBAM.Models.Editorial;
 import com.UBAM.Models.Genero;
+import com.UBAM.Models.Idioma;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -23,6 +24,7 @@ public class Agregar extends javax.swing.JFrame {
         initComponents();
         cargarEditoriales();
         cargarGeneros();
+        cargarIdiomas();
     }
     
     private void cargarEditoriales() {
@@ -40,6 +42,15 @@ public class Agregar extends javax.swing.JFrame {
         
         for(int i = 0; i<lista.size(); i++){
             jc_genero.addItem(new Genero(lista.get(i).getGeneroId(), lista.get(i).getGeneroNombre()));
+        }
+    }
+    
+    private void cargarIdiomas() {
+        ComboController comboController = new ComboController();
+        ArrayList<Idioma> lista = comboController.obtenerIdiomas();
+        
+        for(int i = 0; i<lista.size(); i++){
+            jc_idioma.addItem(new Idioma(lista.get(i).getIdioma_Id(), lista.get(i).getIdioma_Nombre()));
         }
     }
 
@@ -76,8 +87,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel3.setText("Género: ");
 
         jLabel4.setText("Idioma:");
-
-        jc_idioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--" }));
 
         jLabel5.setText("Costo:");
 
@@ -237,7 +246,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<Editorial> jc_editorial;
     private javax.swing.JComboBox<Genero> jc_genero;
-    private javax.swing.JComboBox<String> jc_idioma;
+    private javax.swing.JComboBox<Idioma> jc_idioma;
     private javax.swing.JTextField jt_cantidad;
     private javax.swing.JTextField jt_costo;
     private javax.swing.JTextField jt_nombre;

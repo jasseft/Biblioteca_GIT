@@ -13,6 +13,15 @@ public class Idioma {
     private int Idioma_Id;
     private String Idioma_Nombre;
     private int Idioma_Activo;
+    
+    public Idioma(){
+        
+    }
+
+    public Idioma(int Idioma_Id, String Idioma_Nombre) {
+        this.Idioma_Id = Idioma_Id;
+        this.Idioma_Nombre = Idioma_Nombre;
+    }
 
     public int getIdioma_Id() {
         return Idioma_Id;
@@ -38,5 +47,9 @@ public class Idioma {
         this.Idioma_Activo = Idioma_Activo;
     }
     
+    @Override
+    public String toString() {
+        return Idioma_Nombre;
+    }
     
 }
