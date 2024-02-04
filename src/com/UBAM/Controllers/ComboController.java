@@ -31,9 +31,9 @@ public class ComboController {
                 edit.setEditorial_Nombre(rs.getString("editorial_Nombre"));
                 lista_editoriales.add(edit);
             }
-            System.out.println("Categoria obtenida");
+            System.out.println("Editoriales obtenidas");
         } catch(Exception e){
-            System.out.println("Error al buscar categorías." + e);
+            System.out.println("Error al buscar editoriales." + e);
         }
         
         return lista_editoriales;
@@ -53,9 +53,9 @@ public class ComboController {
                 gen.setGeneroNombre(rs.getString("generoNombre"));
                 lista_generos.add(gen);
             }
-            System.out.println("Categoria obtenida");
+            System.out.println("Géneros obtenidos");
         } catch(Exception e){
-            System.out.println("Error al buscar categorías." + e);
+            System.out.println("Error al buscar géneros." + e);
         }
         
         return lista_generos;
@@ -75,9 +75,9 @@ public class ComboController {
                 idiomas.setIdioma_Nombre(rs.getString("Idioma_Nombre"));
                 lista_idiomas.add(idiomas);
             }
-            System.out.println("Categoria obtenida");
+            System.out.println("Idiomas obtenidos");
         } catch(Exception e){
-            System.out.println("Error al buscar categorías." + e);
+            System.out.println("Error al buscar idiomas." + e);
         }
         
         return lista_idiomas;
