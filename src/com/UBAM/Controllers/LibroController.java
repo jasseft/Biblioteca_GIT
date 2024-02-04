@@ -5,8 +5,14 @@
 package com.UBAM.Controllers;
 
 import com.UBAM.ConexionMySQL.ConexionMySQL;
+import com.UBAM.Models.Libros;
+import com.UBAM.Models.LibrosTableModel;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author jasse
@@ -103,6 +109,35 @@ public class LibroController {
             conn.cerrarConexion();
         }
     }
+    
+    public void consultaLibros(JTable jTable) {
+        Connection connection = conn.abrirConexion();
+        try {
+            CallableStatement cs = connection.prepareCall("{CALL showAllLibros()}");
+            ResultSet rs = cs.executeQuery();
 
+            List<Libros> librosList = new ArrayList<>();
+            while (rs.next()) {
+                Libros libro = new Libros();
+                libro.setLibro_Id(rs.getInt("libro_Id"));
+                libro.setLibro_Nombre(rs.getString("libro_Nombre"));
+                libro.setGenero(rs.getString("Genero"));
+                libro.setEditorial(rs.getString("Editorial"));
+                libro.setIdioma(rs.getString("Idioma"));
+                libro.setLibro_Cantidad(rs.getInt("libro_Cantidad"));
+                libro.setLibro_Costo(rs.getDouble("libro_Costo"));
+                // Agrega más líneas según tus atributos
+
+                librosList.add(libro);
+            }
+
+            LibrosTableModel modelo = new LibrosTableModel(librosList);
+            jTable.setModel(modelo);
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            conn.cerrarConexion();
+        }
+    }
 
 }

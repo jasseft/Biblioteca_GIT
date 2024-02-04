@@ -48,12 +48,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="98" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnSalir" min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="btnVenta" min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="btnModificarLibro" min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="btnAgregarLibro" min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="btnConectarBase" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnSalir" max="32767" attributes="0"/>
+                      <Component id="btnVenta" max="32767" attributes="0"/>
+                      <Component id="btnModificarLibro" max="32767" attributes="0"/>
+                      <Component id="btnAgregarLibro" max="32767" attributes="0"/>
+                      <Component id="btnConectarBase" max="32767" attributes="0"/>
+                      <Component id="btnConsultar" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
               </Group>
@@ -69,10 +70,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnModificarLibro" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnVenta" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,6 +109,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVenta">
           <Properties>
@@ -113,6 +119,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVentaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnConsultar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Consultar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
