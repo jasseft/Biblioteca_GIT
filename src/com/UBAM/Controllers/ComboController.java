@@ -13,16 +13,15 @@ import java.util.ArrayList;
 public class ComboController {
     
     private ConexionMySQL conn = new ConexionMySQL();
-    Connection cn = conn.abrirConexion();
-    ResultSet rs;
-    Statement st;
+    Connection selectConn = conn.abrirConexion();
     
     public ArrayList<Editorial> obtenerEditoriales(){
         ArrayList<Editorial> lista_editoriales = new ArrayList<>();
         try{
-            String consulta = "SELECT *FROM tbl_cat_editorial";
-            st = cn.createStatement();
-            rs = st.executeQuery(consulta);
+               
+            String query = "CALL showAllEditoriales()";
+            PreparedStatement stmt = selectConn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
             
             while(rs.next()){
                 Editorial edit = new Editorial();
