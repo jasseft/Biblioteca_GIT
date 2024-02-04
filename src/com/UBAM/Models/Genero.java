@@ -13,6 +13,16 @@ public class Genero {
     private int generoId;
     private String generoNombre;
     private int generoActivo;
+    
+    public Genero(){
+        
+    }
+
+    public Genero(int generoId, String generoNombre) {
+        this.generoId = generoId;
+        this.generoNombre = generoNombre;
+    }
+    
 
     public int getGeneroId() {
         return generoId;
@@ -36,5 +46,10 @@ public class Genero {
 
     public void setGeneroActivo(int generoActivo) {
         this.generoActivo = generoActivo;
+    }
+    
+    @Override
+    public String toString() {
+        return generoNombre;
     }
 }

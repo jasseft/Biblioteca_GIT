@@ -6,6 +6,7 @@ package com.UBAM.Controllers;
 
 import com.UBAM.ConexionMySQL.ConexionMySQL;
 import com.UBAM.Models.Editorial;
+import com.UBAM.Models.Genero;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,6 +38,25 @@ public class ComboController {
         return lista_editoriales;
     }
 
-    // Puedes agregar métodos similares para otros JComboBox (género, idioma, etc.)
-    // Asegúrate de cerrar los recursos de la base de datos adecuadamente.
+    public ArrayList<Genero> obtenerGeneros(){
+        ArrayList<Genero> lista_generos = new ArrayList<>();
+        try{
+               
+            String query = "CALL showAllGeneros()";
+            PreparedStatement stmt = selectConn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Genero gen = new Genero();
+                gen.setGeneroId(rs.getInt("generoId"));
+                gen.setGeneroNombre(rs.getString("generoNombre"));
+                lista_generos.add(gen);
+            }
+            System.out.println("Categoria obtenida");
+        } catch(Exception e){
+            System.out.println("Error al buscar categorías." + e);
+        }
+        
+        return lista_generos;
+    }
 }

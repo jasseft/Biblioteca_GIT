@@ -7,6 +7,7 @@ package biblioteca;
 import com.UBAM.ConexionMySQL.ConexionMySQL;
 import com.UBAM.Controllers.ComboController;
 import com.UBAM.Models.Editorial;
+import com.UBAM.Models.Genero;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -21,6 +22,7 @@ public class Agregar extends javax.swing.JFrame {
     public Agregar() {
         initComponents();
         cargarEditoriales();
+        cargarGeneros();
     }
     
     private void cargarEditoriales() {
@@ -29,6 +31,15 @@ public class Agregar extends javax.swing.JFrame {
         
         for(int i = 0; i<lista.size(); i++){
             jc_editorial.addItem(new Editorial(lista.get(i).getEditorial_Id(), lista.get(i).getEditorial_Nombre()));
+        }
+    }
+    
+    private void cargarGeneros() {
+        ComboController comboController = new ComboController();
+        ArrayList<Genero> lista = comboController.obtenerGeneros();
+        
+        for(int i = 0; i<lista.size(); i++){
+            jc_genero.addItem(new Genero(lista.get(i).getGeneroId(), lista.get(i).getGeneroNombre()));
         }
     }
 
@@ -63,8 +74,6 @@ public class Agregar extends javax.swing.JFrame {
         jLabel2.setText("Editorial: ");
 
         jLabel3.setText("Género: ");
-
-        jc_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--" }));
 
         jLabel4.setText("Idioma:");
 
@@ -176,7 +185,8 @@ public class Agregar extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //String opcion = (String) jc_editorial.getSelectedItem();
         int id = jc_editorial.getItemAt(jc_editorial.getSelectedIndex()).getEditorial_Id();
-        JOptionPane.showMessageDialog(null, "ID --> " + id);
+        int id2 = jc_genero.getItemAt(jc_genero.getSelectedIndex()).getGeneroId();
+        JOptionPane.showMessageDialog(null, "ID --> " + id2);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
@@ -226,7 +236,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<Editorial> jc_editorial;
-    private javax.swing.JComboBox<String> jc_genero;
+    private javax.swing.JComboBox<Genero> jc_genero;
     private javax.swing.JComboBox<String> jc_idioma;
     private javax.swing.JTextField jt_cantidad;
     private javax.swing.JTextField jt_costo;
