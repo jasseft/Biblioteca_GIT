@@ -6,6 +6,7 @@ package biblioteca;
 
 import com.UBAM.ConexionMySQL.ConexionMySQL;
 import com.UBAM.Controllers.ComboController;
+import com.UBAM.Controllers.LibroController;
 import com.UBAM.Models.Editorial;
 import com.UBAM.Models.Genero;
 import com.UBAM.Models.Idioma;
@@ -96,11 +97,27 @@ public class Agregar extends javax.swing.JFrame {
 
         jLabel5.setText("Costo:");
 
+        jt_costo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_costoKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("Cantidad: ");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,29 +133,26 @@ public class Agregar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSalir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnRegistrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jt_costo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jc_idioma, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jc_genero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jc_editorial, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jt_nombre)
-                            .addComponent(jt_cantidad))))
+                    .addComponent(jt_costo)
+                    .addComponent(jc_idioma, 0, 177, Short.MAX_VALUE)
+                    .addComponent(jc_genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jc_editorial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jt_nombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jt_cantidad, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,9 +186,9 @@ public class Agregar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegistrar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLimpiar)
-                        .addComponent(btnSalir)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(btnSalir)
+                        .addComponent(btnLimpiar)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -199,11 +213,63 @@ public class Agregar extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //String opcion = (String) jc_editorial.getSelectedItem();
-        int id = jc_editorial.getItemAt(jc_editorial.getSelectedIndex()).getEditorial_Id();
+        /*int id = jc_editorial.getItemAt(jc_editorial.getSelectedIndex()).getEditorial_Id();
         int id2 = jc_genero.getItemAt(jc_genero.getSelectedIndex()).getGeneroId();
-        JOptionPane.showMessageDialog(null, "ID --> " + id2);
+        JOptionPane.showMessageDialog(null, "ID --> " + id2);*/
+        
+        String nombreLibro = jt_nombre.getText();
+        int idEditorial = jc_editorial.getItemAt(jc_editorial.getSelectedIndex()).getEditorial_Id();
+        int idGenero = jc_genero.getItemAt(jc_genero.getSelectedIndex()).getGeneroId();
+        int idIdioma = jc_idioma.getItemAt(jc_idioma.getSelectedIndex()).getIdioma_Id();
+        String costo_string = jt_costo.getText().trim();
+        String cantidad_string = jt_cantidad.getText().trim();
+        double costo = Double.parseDouble(costo_string);
+        int cantidad = Integer.parseInt(cantidad_string);
+        
+
+        if (nombreLibro.isEmpty() || costo_string.isEmpty() || cantidad_string.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+            return;
+            
+        }else if (jc_editorial.getSelectedIndex() == 0 || jc_genero.getSelectedIndex() == 0 || jc_idioma.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione opciones válidas en los combos.");
+            return;
+            
+        }else{
+            LibroController libroController = new LibroController();
+            libroController.agregarLibro(idGenero, idEditorial, idIdioma, nombreLibro, cantidad, costo);
+            limpiarCampos();
+        }
+
+    
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    private void jt_costoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_costoKeyTyped
+        char c = evt.getKeyChar();
+        
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_costoKeyTyped
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+        Menu menuForm = new Menu();
+        menuForm.setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void limpiarCampos() {
+        jt_nombre.setText("");
+        jc_editorial.setSelectedIndex(0); // Puedes ajustar el índice según tus necesidades
+        jc_genero.setSelectedIndex(0);
+        jc_idioma.setSelectedIndex(0);
+        jt_costo.setText("");
+        jt_cantidad.setText("");
+    }
     /**
      * @param args the command line arguments
      */
